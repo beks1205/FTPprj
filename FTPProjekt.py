@@ -4,19 +4,19 @@ from datetime import datetime,timedelta
 
 
 i = 19
-path = r'C:\Users\kusib\OneDrive\Desktop\FTPprj-main\testpython - Copy.xml'
-file_path = 'randomfile.txt'
-f = open(r'C:\Users\kusib\OneDrive\Desktop\FTPprj-main\Rechnung - Kopie.txt')
+path = 'Result.txt'
+f = open('Inputdata.data')
 f = f.read()
 b = f.replace('\n', ';')
 Elemente = b.split(';')
 
-with open('filebeks.txt', 'w') as l:
+with open('Splitted.txt', 'w') as l:
     for y in Elemente:
         x = print(y, file=l)
     date1 = Elemente[3]
     datetime_obj = datetime.strptime(date1 , '%d.%m.%Y')
-    end_date = datetime_obj + timedelta(days=30)
+    AdddateNr = Elemente[5].split('_')[1]
+    end_date = datetime_obj + timedelta(days=int(AdddateNr))
     EndDate = '('+ str(end_date.day) + '.' +  str(end_date.month) +'.' + str(end_date.year) + ')'
 
 with open(path, 'w') as w:
@@ -51,7 +51,6 @@ with open(path, 'w') as w:
             beksabs += ' '
         manena2 = manena1 + beksabs
         neymar = behan[45].replace(behan[45], Elemente[i + 3])
-       # teilstringformat = (teilstring.format(Elemente[i + 6].split('_')[1]))
         manena = manena2 + neymar +"{:>11}".format(Betrag1) + "{:>5}".format('CHF') + "{:>12}".format(Betrag2) +\
                  "{:>7}".format(MWSTProzent.split('_')[1])
         print(manena, file=w)
@@ -60,6 +59,7 @@ with open(path, 'w') as w:
     print("{:>74}".format(Rechnungsline),file=w)
     print( "{:>58}".format('Total CHF') + "{:>16}".format("{:.2f}".format(Total)),file=w)
     print('',file=w)
+    print("{:>57}".format('MWST CHF'),file=w)
     print("{:>57}".format('MWST CHF'),file=w)
     print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nZahlungsziel ohne Abzug 30 Tage'+ "{:>13}".format(EndDate),file=w)
     print('\nEinzahlungsschein',file=w)
@@ -71,5 +71,5 @@ with open(path, 'w') as w:
     print("\n"+ Elemente[16],file=w)
     print(Elemente[17],file=w)
     print(Elemente[18],file=w)
-    print(len(manena1))
+
 
