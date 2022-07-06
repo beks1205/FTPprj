@@ -1,0 +1,6 @@
+FTP Get die Datei .*data
+FTP Put die Dateien
+	-invoices.txt
+	-invoices.xml
+	-.logfiles
+	-Abgabe.zip
